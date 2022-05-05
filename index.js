@@ -1,4 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server')
+const mongoose = require('mongoose')
+const { MONGODB } = require('./config')
 
 const typeDefs = gql`
 type Query{
@@ -8,7 +10,7 @@ type Query{
 const resolvers = {
     Query: {
         name: () => {
-           return 'Sarath mullanarambath' 
+            return 'Sarath mullanarambath'
         }
     }
 }
@@ -17,6 +19,10 @@ const server = new ApolloServer({
     typeDefs,
     resolvers
 })
-server.listen({ port: 5000 }).then(res => {
-    console.log(`server is running at ${res.url}`);
+mongoose.connect(MONGODB, { useNewUrlParser: true }).then(() => {
+    console.log('MonogoDb Connected');
+    server.listen({ port: 5000 }).then(res => {
+        console.log(`server is running at ${res.url}`);
+    })
 })
+
