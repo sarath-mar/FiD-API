@@ -1,23 +1,66 @@
 const { ApolloServer, gql } = require('apollo-server')
 const mongoose = require('mongoose')
 const { MONGODB } = require('./config')
+const { GraphqlSchema, GraphqlResolver } = require('./graphql')
+// const { Post } = require('./models/Post')
 
-const typeDefs = gql`
-type Query{
-    name:String
-}`
+// const typeDefs = gql`
+// type post{
+//     _id:ID!
+//     body:String
+//     userName:String
+// }
+// input postInput{
+//     body:String
+//     userName:String!
+// }
+// type Query{
+//     getPosts:[post]
+// }
+// type Mutation{
+//     createPost(input:postInput):post
+// }
+// `
 
-const resolvers = {
-    Query: {
-        name: () => {
-            return 'Sarath mullanarambath'
-        }
-    }
-}
+// const resolvers = {
+//     Query: {
+//         getPosts: async () => {
+//             try {
+//                 let posts = await Post.find()
+//                 console.log(posts)
+//                 posts.length ? console.log('there is post') : console.log("no posts");
+//                 return posts
+//             } catch (e) {
+//                 console.log(e);
+//                 throw "Error"
+//             }
+
+//         }
+//     },
+//     Mutation: {
+//         createPost: async (_, { input }, context, info) => {
+//             console.log("input")
+//             console.log(input)
+//             try {
+//                 if (input) {
+//                     let newPost = await Post.create(input)
+//                     if (newPost) {
+//                         console.log(newPost)
+//                         return newPost
+//                     }
+//                 }else{
+//                     throw new Error("No Input")
+//                 }
+//             } catch (e) {
+//                 throw new Error(e)
+//             }
+//         }
+//     }
+// }
 
 const server = new ApolloServer({
-    typeDefs,
-    resolvers
+    typeDefs:GraphqlSchema,
+    resolvers:GraphqlResolver 
 })
 mongoose.connect(MONGODB, { useNewUrlParser: true }).then(() => {
     console.log('MonogoDb Connected');

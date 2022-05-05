@@ -1,5 +1,5 @@
-const { Model } = require("mongoose");
-const { Schema, ObjectId } = require("../tools");
+// const { } = require("mongoose");
+const { Schema, ObjectId,Model  } = require("../tools");
 
 const schemaOptions = {
     timestamps: true,
@@ -23,4 +23,4 @@ const PostSchema = new Schema({
         ref: 'Users'
     }
 })
-module.exports.Post = Model('Post', PostSchema)
+module.exports.Post = Model('Post', PostSchema) 
