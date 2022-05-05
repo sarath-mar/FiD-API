@@ -1,0 +1,26 @@
+const { Model } = require("mongoose");
+const { Schema, ObjectId } = require("../tools");
+
+const schemaOptions = {
+    timestamps: true,
+};
+const PostSchema = new Schema({
+    body: String,
+    userName: String,
+    comments: [
+        {
+            body: String,
+            userName: String
+        }
+    ],
+    likes: [
+        {
+            userName: String
+        }
+    ],
+    user: {
+        type: ObjectId,
+        ref: 'Users'
+    }
+})
+module.exports.Post = Model('Post', PostSchema)
