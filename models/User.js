@@ -7,6 +7,8 @@ const schemaOptions = {
 const UserSchema = new Schema({
     userName: String,
     password: String,
-    email: String
-})
+    email: String,
+    phone:String,
+},
+    schemaOptions)
 module.exports.User = Model("User", UserSchema)

@@ -1,7 +1,10 @@
 const { gql } = require("apollo-server");
 const { PostSchema } = require("../posts");
+const { UserSchema } = require("../user");
+
 let schemas = [
-    PostSchema
+    PostSchema,
+    UserSchema
 ]
 
 const types = new Array()
