@@ -1,5 +1,5 @@
 const { Post } = require("../models/Post");
-const PostHelper = require('./helper')
+const PostHelper = require('./post_helper')
 
 module.exports.queries = {
     getPosts: async () => PostHelper.getPosts()

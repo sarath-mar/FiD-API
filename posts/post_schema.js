@@ -4,6 +4,7 @@ type post{
     _id:ID!
     body:String
     userName:String
+    createdAt:String
 }
 input postInput{
     body:String
