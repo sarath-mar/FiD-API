@@ -15,10 +15,15 @@ module.exports = {
         password:String! 
         confirmPassword:String! 
     }
+    input userSignInInput{
+        emailOrPhone:String!
+        password:String! 
+    }
 
 `,
     queries: `
 `,
     mutations: `
     userRegistration(input:RegistrationInput):User!
+    userSignIn(input:userSignInInput):User!
 `}

@@ -73,7 +73,7 @@ module.exports = {
 
         let user = await userValidation(input)
         if (user) {
-            let isUserIsExisting = await User.findOne({ phone: input.phone })
+            let isUserIsExisting = await User.findOne({ $or: [{ phone: user.phone }, { email: user.email }] })
             if (isUserIsExisting) {
                 throw customError(errorName.ALREADY_EXISTED)
             }
