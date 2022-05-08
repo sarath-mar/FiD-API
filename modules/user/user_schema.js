@@ -13,6 +13,7 @@ module.exports = {
         phone:String!
         email:String!
         password:String! 
+        confirmPassword:String! 
     }
 
 `,

@@ -4,6 +4,7 @@ const errorName={
     ALREADY_EXISTED:"ALREADY_EXISTED",
     USER_NOT_FOUND:"USER_NOT_FOUND",
     SOME_ERROR:"SOME_ERROR",
+    PASSWORD_NOT_MATCH:"PASSWORD_NOT_MATCH"
 }
 
 const customError=(msg)=>{

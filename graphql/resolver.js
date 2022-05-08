@@ -1,5 +1,5 @@
-const { PostResolver } = require("../posts"); 
-const { UserResolver } = require("../user");
+const { PostResolver } = require("../modules/posts"); 
+const { UserResolver } = require("../modules/user");
 const resolvers = {
     Query: {
      ...PostResolver.queries,

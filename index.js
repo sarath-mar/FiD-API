@@ -60,7 +60,11 @@ const { GraphqlSchema, GraphqlResolver } = require('./graphql')
 
 const server = new ApolloServer({
     typeDefs:GraphqlSchema,
-    resolvers:GraphqlResolver 
+    resolvers:GraphqlResolver ,
+    context:({req,res})=>{
+        // console.log(q.req.user) 
+        return req
+    }
 })
 mongoose.connect(MONGODB, { useNewUrlParser: true }).then(() => {
     console.log('MonogoDb Connected');

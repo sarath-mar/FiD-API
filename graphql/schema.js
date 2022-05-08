@@ -1,6 +1,6 @@
 const { gql } = require("apollo-server");
-const { PostSchema } = require("../posts");
-const { UserSchema } = require("../user");
+const { PostSchema } = require("../modules/posts"); 
+const { UserSchema } = require("../modules/user");
 
 let schemas = [
     PostSchema,
