@@ -95,5 +95,21 @@ module.exports = {
         }
         throw customError(errorName.USER_NOT_FOUND)
 
+    },
+    userSignIn: async (input) => {
+       if (input.emailOrPhone) {
+            var isUser = await User.findOne({ $or: [{ email: input.emailOrPhone }, { phone: input.emailOrPhone }] })
+            if (!isUser)
+                throw customError(errorName.NO_EMAIL_OR_PHONE_FOUND)
+        }
+        if (input.password && isUser) {
+            let validUser = await bcrypt.compare(input.password, isUser.password)
+            if(validUser){
+                let token=await createToken(isUser)
+                isUser.token=token
+                return isUser
+            }
+            throw customError(errorName.PASSWORD_NOT_MATCH)
+        }
     }
 }

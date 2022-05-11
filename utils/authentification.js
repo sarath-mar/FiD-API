@@ -15,10 +15,10 @@ module.exports = {
 
             } catch (e) {
                 console.log(e)
-                throw customError(errorName.SOME_ERROR)
+                throw customError(errorName.TOKEN_EXPIRED)
             }
         } else {
-            throw customError("NO_TOKEN_FOUND")
+            throw customError(errorName.NO_TOKEN_FOUND)
         }
 
     }

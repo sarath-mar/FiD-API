@@ -3,9 +3,9 @@ module.exports = {
     type User{
         _id:ID!
         userName:String!
-        phone:String!
+        phone:String
         email:String
-        token:String!
+        token:String
         createdAt:String
     }
     input RegistrationInput{

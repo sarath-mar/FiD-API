@@ -6,11 +6,10 @@ module.exports.queries = {
 }
 module.exports.mutations = {
     createPost: async (_, { input }, context, info) => {
-        // if(context){
-        //     console.log()
-        // }
         let auth = await checkAuth(context)
-        console.log(auth)
-        // return PostHelper.createPosts(input)
+        if (auth) {
+            return PostHelper.createPosts(input)
+        }
+
     }
 }
