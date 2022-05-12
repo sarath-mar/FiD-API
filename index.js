@@ -1,22 +1,15 @@
-const { ApolloServer, gql } = require('apollo-server')
+const express = require('express')
+const app = express()
+const config = require('./config')
+const mongoose = require('mongoose')
+const userRoute = require('./routes/user')
 
-const typeDefs = gql`
-type Query{
-    name:String
-}`
-
-const resolvers = {
-    Query: {
-        name: () => {
-           return 'Sarath mullanarambath' 
-        }
-    }
-}
-
-const server = new ApolloServer({
-    typeDefs,
-    resolvers
-})
-server.listen({ port: 5000 }).then(res => {
-    console.log(`server is running at ${res.url}`);
+app.use("/user", userRoute)
+mongoose.connect(config.MONGOOSE_URL).then(() => {
+    console.log("Database is connected sucessfuly")
+    app.listen(config.PORT, () => {
+        console.log(`server is running at port : ${config.PORT}`)
+    })
+}).catch(err => {
+    console.log('some unexpected error occured ' + err)
 })
