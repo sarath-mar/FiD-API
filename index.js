@@ -1,6 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server')
 const mongoose = require('mongoose')
-const { MONGODB } = require('./config')
+const { MONGOOSE_URL } = require('./config')
 const { GraphqlSchema, GraphqlResolver } = require('./graphql')
 // const { Post } = require('./models/Post')
 
@@ -66,7 +66,7 @@ const server = new ApolloServer({
         return req
     }
 })
-mongoose.connect(MONGODB, { useNewUrlParser: true }).then(() => {
+mongoose.connect(MONGOOSE_URL, { useNewUrlParser: true }).then(() => {
     console.log('MonogoDb Connected');
     server.listen({ port: 5000 }).then(res => {
         console.log(`server is running at ${res.url}`);
