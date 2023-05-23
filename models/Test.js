@@ -37,7 +37,8 @@ const testSchema = Schema(
         post: {
             type: ObjectId,
             ref: "User"
-        }
+        },
+        
     }, schemaOptions
 )
 // testSchema.methods= {
