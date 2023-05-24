@@ -26,8 +26,10 @@ module.exports = {
 `,
     queries: `
             getProducts:productList
+            getSingleProduct(id:ID!):product
 `,
     mutations: `
             createProduct(input:productInput):product
             uploadBulkProduct(input:[productInput]):Boolean
+            deleteProduct(id:ID!):Boolean
 `}

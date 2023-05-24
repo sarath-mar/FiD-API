@@ -6,21 +6,35 @@ const ProductHelper = require('./product_helper')
 
 module.exports.queries = {
     getProducts: async () => ProductHelper.getProducts(),
-  
+    // getSingleProduct
+    getSingleProduct: async (_, { id }, context, info) => {
+        // let auth = await checkAuth(context)
+        // if (auth) {
+        return ProductHelper.getSingleProduct(id)
+        // }
+    },
+
 }
 module.exports.mutations = {
     createProduct: async (_, { input }, context, info) => {
         // let auth = await checkAuth(context)
         // if (auth) {
-            return ProductHelper.createProduct(input)
+        return ProductHelper.createProduct(input)
         // }
     },
     uploadBulkProduct: async (_, { input }, context, info) => {
         // let auth = await checkAuth(context)
         // if (auth) {()
-            console.log("reached")
-            return ProductHelper.uploadBulkProduct(input)
+        console.log("reached")
+        return ProductHelper.uploadBulkProduct(input)
         // }
     },
-    
+    deleteProduct: async (_, { id }, context, info) => {
+        // let auth = await checkAuth(context)
+        // if (auth) {()
+        console.log("reached", id)
+        return ProductHelper.deleteProduct(id)
+        // }
+    },
+
 }

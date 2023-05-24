@@ -1,4 +1,4 @@
-const { PostResolver } = require("../modules/posts"); 
+const { PostResolver } = require("../modules/products"); 
 const { UserResolver } = require("../modules/user");
 const resolvers = {
     Query: {
