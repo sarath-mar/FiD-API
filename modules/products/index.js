@@ -1,6 +1,6 @@
-const PostSchema=require('./product_schema')
-const PostResolver=require('./product_resolver') 
+const ProductSchema=require('./product_schema')
+const ProductResolver=require('./product_resolver') 
 module.exports={
-    PostSchema,
-    PostResolver 
+    ProductSchema,
+    ProductResolver 
 }

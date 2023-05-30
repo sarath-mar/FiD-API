@@ -1,12 +1,15 @@
-const { PostResolver } = require("../modules/products"); 
+const { ProductResolver } = require("../modules/products"); 
+const { QuotationResolver } = require("../modules/quotations"); 
 const { UserResolver } = require("../modules/user");
 const resolvers = {
     Query: {
-     ...PostResolver.queries,
+     ...ProductResolver.queries,
+     ...QuotationResolver.queries,
      ...UserResolver.queries
     },
     Mutation: {
-       ...PostResolver.mutations,
+       ...ProductResolver.mutations,
+       ...QuotationResolver.mutations,
        ...UserResolver.mutations
     }
 }
