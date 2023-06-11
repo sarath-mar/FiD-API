@@ -1,7 +1,7 @@
-const { SECERETKEY } = require("../config")
+// const { SECERETKEY } = require("../config")
 const { jwt } = require("../tools")
 const { customError, errorName } = require("./errorHelper")
-
+const SECERETKEY="Fid@test" || process.env.SECERETKEY
 module.exports = {
     checkAuth: async(context) => {
         const authHeader = context.headers.authorization

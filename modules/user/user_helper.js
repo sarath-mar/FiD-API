@@ -1,9 +1,9 @@
 
-const { SECERETKEY } = require("../../config");
+// const { SECERETKEY } = require("../../config");
 const { User } = require("../../models/User");
 const { ObjectId, bcrypt, jwt } = require("../../tools");
 const { customError, errorName } = require("../../utils");
-
+const SECERETKEY="Fid@test" || process.env.SECERETKEY
 const createToken = async (user) => {
     try {
         const token = await jwt.sign({

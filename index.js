@@ -1,6 +1,7 @@
 const { ApolloServer, gql } = require('apollo-server')
 const mongoose = require('mongoose')
-const { MONGOOSE_URL, PORT, SECERETKEY } = require('./config')
+require('dotenv').config()
+// const { MONGOOSE_URL, PORT, SECERETKEY } = require('./config')
 const { GraphqlSchema, GraphqlResolver } = require('./graphql')
 const express = require("express")
 const { checkAuth } = require("./utils/authentification")
@@ -27,8 +28,10 @@ const server = new ApolloServer({
 
     }
 })
+const PORT = 5000 || process.env.PORT
+const MONGOOSE_URL = "mongodb://localhost:27017" || process.env.MONGOOSE_URL
 mongoose.connect(MONGOOSE_URL, { useNewUrlParser: true }).then(() => {
-    console.log('MonogoDb Connected');
+
     server.listen({ port: PORT }).then(res => {
         console.log(`server is running at ${res.url}`);
     })
