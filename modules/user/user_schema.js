@@ -8,6 +8,10 @@ module.exports = {
         token:String
         createdAt:String
     }
+    type UserList{
+        totalCount:Int
+        data:[User]
+    }
     input RegistrationInput{
         userName:String!
         phone:String!
@@ -22,6 +26,7 @@ module.exports = {
 
 `,
     queries: `
+    getUsers:UserList
 `,
     mutations: `
     userRegistration(input:RegistrationInput):User!

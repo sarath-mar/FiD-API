@@ -14,7 +14,7 @@ module.exports = {
                 return user
 
             } catch (e) {
-                console.log(e)
+                // console.log(e)
                 throw customError(errorName.TOKEN_EXPIRED)
             }
         } else {

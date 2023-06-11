@@ -5,14 +5,21 @@ const { ObjectId, bcrypt, jwt } = require("../../tools");
 const { customError, errorName } = require("../../utils");
 
 const createToken = async (user) => {
-    const token = await jwt.sign({
-        id: user._id,
-        phone: user.phone,
-        userName: user.userName
-    }, SECERETKEY, { expiresIn: '1h' })
-    if (!token)
-        throw customError(errorName.SOME_ERROR)
-    return token
+    try {
+        const token = await jwt.sign({
+            id: user._id,
+            phone: user.phone,
+            userName: user.userName
+        }, SECERETKEY, { expiresIn: '1h' })
+        if (!token)
+            throw customError(errorName.SOME_ERROR)
+        return token
+    }
+    catch (e) {
+        console.log(e);
+        throw customError(errorName.FAILED)
+    }
+
 
 }
 const userValidation = async (input) => {
@@ -97,19 +104,27 @@ module.exports = {
 
     },
     userSignIn: async (input) => {
-       if (input.emailOrPhone) {
+        if (input.emailOrPhone) {
             var isUser = await User.findOne({ $or: [{ email: input.emailOrPhone }, { phone: input.emailOrPhone }] })
             if (!isUser)
                 throw customError(errorName.NO_EMAIL_OR_PHONE_FOUND)
         }
         if (input.password && isUser) {
             let validUser = await bcrypt.compare(input.password, isUser.password)
-            if(validUser){
-                let token=await createToken(isUser)
-                isUser.token=token
+            if (validUser) {
+                let token = await createToken(isUser)
+                isUser.token = token
                 return isUser
             }
             throw customError(errorName.PASSWORD_NOT_MATCH)
+        }
+    },
+    getUsers: async () => {
+        let users = await User.find()
+        totalCount = await User.countDocuments()
+        return {
+            data: users,
+            totalCount
         }
     }
 }

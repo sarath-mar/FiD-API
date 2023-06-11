@@ -1,5 +1,8 @@
 const userHelper=require('./user_helper')
 module.exports.queries = {
+    getUsers: async (_, { input }, context, info) => {
+        return userHelper.getUsers(input)
+    }
 }
 module.exports.mutations = {
     userRegistration: async (_, { input }, context, info) => {
@@ -7,5 +10,6 @@ module.exports.mutations = {
     },
     userSignIn: async (_, { input }, context, info) => {
         return userHelper.userSignIn(input)
-    }
+    },
+   
 }
